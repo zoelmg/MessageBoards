@@ -4,7 +4,8 @@
 MessageBoards is an application that allows user to post messages on a community board, where users are allowed to post any messages as long as it is not empty, less than 128 characters, and does not include any profanity. Messages on the board are shown from most to least recently posted and users are able to see what date and time the messages were posted. In addition, users can search for messages that were posted on a specific date and go to the next or prev page to see more messages. 
 
 ## How to start applications
-1. To start the application, open up two terminals; cd to client_server in the first terminal and react_board in the second terminal
+1. To start the application, open up two terminals
+2. ```cd client_server``` in the first terminal and ```cd react_board``` in the second terminal
 2. Run ```npm start``` in client_server terminal; you should see the messages: 
     ```
     client_server@1.0.0 start
@@ -13,13 +14,17 @@ MessageBoards is an application that allows user to post messages on a community
     ```
 3. Run ```npm start``` in react_board terminal;  you should see the success message
 4. If react_board throws an error saying command not found, please run ```npm install``` in the react_board directory; this will download the modules needed by React to run the application
-5. If both succeeded, head to http://localhost:3000 to see the message board if react_board did not auto-direct you to the page
+5. If both succeeded, head to http://localhost:3000 to see the message board if react_board did not auto-direct to the page
 
-
-## Tools & Framework
+## Tools, Framework, & Setup
 1. Backend Server: NodeJS (v18.17.0) and Express (v4.18.2)
+    - The server that is listening on port 8001 recieves request and sends response
 2. Backend Database: Supabase (PostgreSQL) (v1.115.5)
+    - The database stores a table named Messages that has a auto-incremented primary-key id, auto-filled timestamp created_at, and a message_body. 
+    - The database is connected to the client_server so the client_server can GET or POST data via queries
 3. Frontend WebApp: React (v18.2.0)
+    - User interface locally hosted on port 3000
+    - Connected to the backend server via routes, sends HTTP requests to the server for processing
 
 ## Requirements
 1. Users should be able to type a message and post it to the message board. The message must be non-empty, and at most 128 characters long:

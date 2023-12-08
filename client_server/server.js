@@ -28,14 +28,14 @@ app.get('/getData', async (req, res) => {
 
     if (error) {
       console.error('Error fetching data:', error.message);
-      res.status(500).send('Internal Server Error');
+      res.status(500).send('Server Error');
       return;
     }
 
     res.json(data);
   } catch (error) {
     console.error('Unexpected error:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Server Error');
   }
 });
 
@@ -67,14 +67,14 @@ app.get('/getData/:date', async (req, res) => {
 
     if (error) {
       console.error('Error fetching data:', error.message);
-      res.status(500).send('Internal Server Error');
+      res.status(500).send('Server Error');
       return;
     }
 
     res.json(data);
   } catch (error) {
     console.error('Unexpected error:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Server Error');
   }
 });
 
@@ -102,7 +102,7 @@ app.post('/insertData', async (req, res) => {
     res.send('Finished running insert, inserted: ' + message_body);
   } catch (error) {
     console.error('Unexpected error:', error.message);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Server Error' });
   }
 });
 
