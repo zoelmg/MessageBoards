@@ -40,7 +40,8 @@ MessageBoards is an application that allows user to post messages on a community
 
 ## Reflections && Future Improvements
 Overall, I enjoyed this project a lot because I learned to use many tools that I have not used before. I particularly enjoyed playing around with the fonts and images for just a little bit. If time permitted, I would have love to made the message board more fun and creative visually and also implements some more features including: 
-    1. allowing the users to jump from pages to pages instead of manually 
-    2. allowing users to delete their messages (DELETE method) and created user accounts since Supabase supported user authentication
-    3. optimize the way that data is retrieved whenever a new message is posted 
+
+1. allowing the users to jump from pages to pages instead of manually 
+2. allowing users to delete their messages (DELETE method) and created user accounts since Supabase supported user authentication
+3. optimize the way that data is retrieved whenever a new message is posted 
 
