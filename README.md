@@ -63,4 +63,5 @@ Overall, I enjoyed this project a lot because I learned to use many tools that I
 1. allowing the users to jump from pages to pages instead of manually 
 2. allowing users to delete their messages (DELETE method) and created user accounts since Supabase supported user authentication
 3. optimize the way that data is retrieved whenever a new message is posted 
+4. Figure out the timestamp conversion issue
 

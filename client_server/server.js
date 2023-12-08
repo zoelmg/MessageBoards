@@ -67,7 +67,7 @@ app.get('/getData/:date', async (req, res) => {
   const isoStartDate = startdate.toISOString();
   const isoEndDate = endDate.toISOString();
 
-  //Format to New York Time
+//Format to local time
 const options = {
   year: 'numeric',
   month: '2-digit',
@@ -78,18 +78,18 @@ const options = {
   timeZone: 'America/New_York',
 };
 
-const formattedStartDate = new Date(isoStartDate).toLocaleString('en-US', options);
-const formattedEndDate = new Date(isoEndDate).toLocaleString('en-US', options);
+const dayStart = new Date(isoStartDate).toLocaleString('en-US', options);
+const dayEnd = new Date(isoEndDate).toLocaleString('en-US', options);
 
-console.log('Start of the day:', formattedStartDate);
-console.log('End of the day:', formattedEndDate);
+console.log('Start of the day:', dayStart);
+console.log('End of the day:', dayEnd);
 
     let query = supabase
       .from('Messages')
       .select('message_body, created_at')
       .order('created_at', { ascending: false })
-      .gte('created_at', formattedStartDate)
-      .lte('created_at', formattedEndDate);
+      .gte('created_at', dayStart)
+      .lte('created_at', dayEnd);
 
     const { data, error } = await query;
 
