@@ -28,8 +28,10 @@ function Messages() {
       if (selectedDate) {
         const formattedDate = selectedDate.toISOString().split('T')[0];
         url += `/${formattedDate}`; 
+        console.log(formattedDate);
       }
       
+    
       //send the API request for the messages
       const response = await axios.get(url);
       setMessages(response.data);

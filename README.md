@@ -40,7 +40,20 @@ MessageBoards is an application that allows user to post messages on a community
 1. Profanity Screening:
     - Similar to empty or long messages, if the user used profanity in their message, they would receive an error message and the application would not insert their message into the database or post it. This is achieved through Profanity Filter API by API-Ninjas
 2. Filter by Dates:
-    - This feature allows the user to filter the messages by the date they are posted. If someone would find a message or look for messages that were posted on 12-07-2023, they can simply select the date. If they would like to see all the messages again, they can click the reset button.
+    - This feature allows the user to filter the messages by the date they are posted. If someone would find a message or look for messages that were posted on 12-07-2023, they can simply select the date. If they would like to see all the messages again, they can click the reset button. 
+    - There is a weird time-converting bug here: Get request from Postman  works fine and returns the correct Json nodes but for some reason React converts the time into another time zone and retrieving the information. This bug is in the server.js file in app.get('getData/:date').
+        ```
+        Input for Postman: http://localhost:8001/getData/'2023-12-08'
+        Output Log: passed in: '2023-12-08'
+                    Start of the day: 12/08/2023, 12:00:00 AM
+                    End of the day: 12/08/2023, 11:59:59 PM
+        ```
+        ```
+        Input for React: click on the button
+        Output Log: passed in: 2023-12-08
+                    Start of the day: 12/07/2023, 12:00:00 AM
+                    End of the day: 12/07/2023, 11:59:59 PM
+        ```
 3. Message Pages:
     - While this is a small feature, the messages are shown in increments of 10. Users can see how many pages there are of the messages and can navigate forward and backward on the pages. 
 

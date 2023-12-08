@@ -39,29 +39,57 @@ app.get('/getData', async (req, res) => {
   }
 });
 
+
 // Route to fetch data from the database with date filter
 app.get('/getData/:date', async (req, res) => {
   try {
     const { date } = req.params;
+    console.log('passed in:', date);
 
-   //Wasn't able to use equal because .eq requires time to be exactly the same
-   // So manually created the day before and after for range
-   // Calculate the day before and the day after
-   const dayBefore = new Date(date);
-   dayBefore.setDate(dayBefore.getDate() - 1);
-   const dayAfter = new Date(date);
-   dayAfter.setDate(dayAfter.getDate() + 1);
 
-   // Format the dates as strings
-   const dayBeforeString = dayBefore.toISOString().split('T')[0];
-   const dayAfterString = dayAfter.toISOString().split('T')[0];
+ //There is a weird time converting bug here
+ //Get request from Postman  works fine 
+ //console log also reflects Postman time stamp to be correct but for some reason React 
+ //converts the time into another time zone
+ //Input for Postman: http://localhost:8001/getData/'2023-12-08'
+ //Output Log: passed in: '2023-12-08'
+            // Start of the day: 12/08/2023, 12:00:00 AM
+            // End of the day: 12/08/2023, 11:59:59 PM
+ //Input for React: click on the button
+ //Output Log: passed in: 2023-12-08
+            // Start of the day: 12/07/2023, 12:00:00 AM
+            // End of the day: 12/07/2023, 11:59:59 PM
+  const startdate = new Date(date);
+  const endDate = new Date(date);
+  startdate.setHours(0, 0, 0, 0);
+  endDate.setHours(23, 59, 59, 999);
+
+  const isoStartDate = startdate.toISOString();
+  const isoEndDate = endDate.toISOString();
+
+  //Format to New York Time
+const options = {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  timeZone: 'America/New_York',
+};
+
+const formattedStartDate = new Date(isoStartDate).toLocaleString('en-US', options);
+const formattedEndDate = new Date(isoEndDate).toLocaleString('en-US', options);
+
+console.log('Start of the day:', formattedStartDate);
+console.log('End of the day:', formattedEndDate);
 
     let query = supabase
       .from('Messages')
       .select('message_body, created_at')
       .order('created_at', { ascending: false })
-      .gt('created_at', dayBeforeString)
-      .lt('created_at', dayAfterString);
+      .gte('created_at', formattedStartDate)
+      .lte('created_at', formattedEndDate);
 
     const { data, error } = await query;
 
