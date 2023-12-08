@@ -6,19 +6,20 @@ MessageBoards is an application that allows user to post messages on a community
 ## How to start applications
 1. To start the application, open up two terminals; cd to client_server in the first terminal and react_board in the second terminal
 2. Run ```npm start``` in client_server terminal; you should see the messages: 
-    >client_server@1.0.0 start \\
-    > node server.js \\
-    > Server is running on http://localhost:8001
-
+    ```
+    client_server@1.0.0 start
+    node server.js
+    Server is running on http://localhost:8001
+    ```
 3. Run ```npm start``` in react_board terminal;  you should see the success message
 4. If react_board throws an error saying command not found, please run ```npm install``` in the react_board directory; this will download the modules needed by React to run the application
 5. If both succeeded, head to http://localhost:3000 to see the message board if react_board did not auto-direct you to the page
 
 
 ## Tools & Framework
-1. Backend Server: NodeJS and Express 
-2. Backend Database: Supabase (PostgreSQL)
-3. Frontend WebApp: React
+1. Backend Server: NodeJS (v18.17.0) and Express (v4.18.2)
+2. Backend Database: Supabase (PostgreSQL) (v1.115.5)
+3. Frontend WebApp: React (v18.2.0)
 
 ## Requirements
 1. Users should be able to type a message and post it to the message board. The message must be non-empty, and at most 128 characters long:
