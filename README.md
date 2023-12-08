@@ -6,12 +6,12 @@ MessageBoards is an application that allows user to post messages on a community
 ## How to start applications
 1. To start the application, open up two terminals; cd to client_server in the first terminal and react_board in the second terminal
 2. Run ```npm start``` in client_server terminal; you should see the messages: 
-    >client_server@1.0.0 start
-    > node server.js
+    >client_server@1.0.0 start \\
+    > node server.js \\
     > Server is running on http://localhost:8001
 
 3. Run ```npm start``` in react_board terminal;  you should see the success message
-4. If react_board throws an error saying command not found, please run ```npm install``` in the react_board directory; this will download the modules needed by react to run the application
+4. If react_board throws an error saying command not found, please run ```npm install``` in the react_board directory; this will download the modules needed by React to run the application
 5. If both succeeded, head to http://localhost:3000 to see the message board if react_board did not auto-direct you to the page
 
 
